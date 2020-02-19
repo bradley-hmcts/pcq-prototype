@@ -14,17 +14,17 @@ router.get('/introduction', function(req, res) {
   // if the user type is passed as a string query, use that otherwise use the env var
   var userTypeInput = req.query.userType || req.app.locals.serviceUserTypeA
 
-  // JHS 211109 set user action based on the user type passed in 
+  // JHS 211109 set user action based on the user type passed in
 
     switch (userTypeInput) {
         case 'applicant':
           serviceUserAction = 'application'
           break
         case 'appellant':
-          serviceUserAction = 'appeal'        
+          serviceUserAction = 'appeal'
           break
        case 'appointee':
-          serviceUserAction = 'appeal'        
+          serviceUserAction = 'appeal'
           break
         case 'claimant':
           serviceUserAction = 'claim'
@@ -39,7 +39,7 @@ router.get('/introduction', function(req, res) {
           serviceUserAction = 'case'
           break
 
-    } 
+    }
 
   req.app.locals.serviceUserAction = serviceUserAction
 
@@ -55,7 +55,7 @@ router.get('/introduction', function(req, res) {
   }
 
 
-// JHS 081119 set the returnUrl based on the userType. 
+// JHS 081119 set the returnUrl based on the userType.
   req.app.locals.serviceReturnUrl = chooseUrl()
 
   function chooseUrl() {
@@ -69,7 +69,7 @@ router.get('/introduction', function(req, res) {
       return req.app.locals.serviceReturnUrlA
     }
 
-  }  
+  }
   // set the backLink to the service return url selected
   req.app.locals.backLink = req.app.locals.serviceReturnUrl + '/'
 
@@ -99,18 +99,44 @@ router.get('/age', function(req, res) {
       if (i==0) {
         req.app.locals.backLink = './introduction'
         break
-      } 
+      }
       else {
-      req.app.locals.backLink = './' + questionOrder[i - 1]      
+      req.app.locals.backLink = './' + questionOrder[i - 1]
       break
       }
-    }  
+    }
   }
-  res.render('age')    
+  res.render('age')
 })
 
-
+// age answer
 router.post('/age-next-q', function (req, res) {
+  let tellUsYourDob = req.session.data['tell-us-your-dob']
+
+  if (tellUsYourDob == "yes") {
+    res.redirect('/date-of-birth')
+  }
+  else {
+    var nextQ
+    var thisQ = 'age'
+    for (var i = 0; i < questionOrder.length; i++) {
+     if (questionOrder[i] == thisQ) {
+      nextQ = questionOrder[i + 1]
+      break
+      }
+    }
+    res.redirect('/' + nextQ)
+  }
+})
+// DoB Back Link
+
+router.get('/date-of-birth', function(req, res) {
+    req.app.locals.backLink = 'age'
+  res.render('date-of-birth')
+})
+// DoB next question
+
+router.post('/date-of-birth-next-q', function (req, res) {
 
   var nextQ
   var thisQ = 'age'
@@ -118,13 +144,12 @@ router.post('/age-next-q', function (req, res) {
      if (questionOrder[i] == thisQ) {
       nextQ = questionOrder[i + 1]
       break
-    }  
+    }
   }
+
     res.redirect('./' + nextQ)
 
 })
-
-
 
 // language Back Link
 
@@ -136,14 +161,14 @@ router.get('/language', function(req, res) {
       if (i==0) {
         req.app.locals.backLink = './introduction'
         break
-      } 
+      }
       else {
-      req.app.locals.backLink = './' + questionOrder[i - 1]      
+      req.app.locals.backLink = './' + questionOrder[i - 1]
       break
       }
-    }  
+    }
   }
-  res.render('language')    
+  res.render('language')
 })
 
 // language answer
@@ -162,18 +187,18 @@ router.post('/language-next-q', function (req, res) {
       if (questionOrder[i] == thisQ) {
         nextQ = questionOrder[i + 1]
         break
-      }  
+      }
     }
     res.redirect('./' + nextQ)
   }
 })
 
-// english level 
+// english level
 // english level Back Link set to language
 
 router.get('/english-level', function(req, res) {
   req.app.locals.backLink = './language'
-  res.render('english-level')    
+  res.render('english-level')
 })
 
 // set thisQ to language so that the next page is next in the array
@@ -186,7 +211,7 @@ router.post('/english-level-next-q', function (req, res) {
      if (questionOrder[i] == thisQ) {
       nextQ = questionOrder[i + 1]
       break
-    }  
+    }
   }
 
     res.redirect('./' + nextQ) // going up a level to the nextQ
@@ -203,14 +228,14 @@ router.get('/sex', function(req, res) {
       if (i==0) {
         req.app.locals.backLink = './introduction'
         break
-      } 
+      }
       else {
-      req.app.locals.backLink = './' + questionOrder[i - 1]      
+      req.app.locals.backLink = './' + questionOrder[i - 1]
       break
       }
-    }  
+    }
   }
-  res.render('sex')    
+  res.render('sex')
 })
 
 // sex next question
@@ -223,10 +248,10 @@ router.post('/sex-next-q', function (req, res) {
      if (questionOrder[i] == thisQ) {
       nextQ = questionOrder[i + 1]
       break
-    }  
+    }
   }
 
-    res.redirect('./' + nextQ) 
+    res.redirect('./' + nextQ)
 
 })
 
@@ -240,14 +265,14 @@ router.get('/gender', function(req, res) {
       if (i==0) {
         req.app.locals.backLink = './introduction'
         break
-      } 
+      }
       else {
-      req.app.locals.backLink = './' + questionOrder[i - 1]      
+      req.app.locals.backLink = './' + questionOrder[i - 1]
       break
       }
-    }  
+    }
   }
-  res.render('gender')    
+  res.render('gender')
 })
 
 // gender next question
@@ -260,7 +285,7 @@ router.post('/gender-next-q', function (req, res) {
      if (questionOrder[i] == thisQ) {
       nextQ = questionOrder[i + 1]
       break
-    }  
+    }
   }
 
     res.redirect('./' + nextQ)
@@ -277,14 +302,14 @@ router.get('/sexual-orientation', function(req, res) {
       if (i==0) {
         req.app.locals.backLink = './introduction'
         break
-      } 
+      }
       else {
-      req.app.locals.backLink = './' + questionOrder[i - 1]      
+      req.app.locals.backLink = './' + questionOrder[i - 1]
       break
       }
-    }  
+    }
   }
-  res.render('sexual-orientation')    
+  res.render('sexual-orientation')
 })
 
 // sexual orientation next question
@@ -297,7 +322,7 @@ router.post('/sexual-orientation-next-q', function (req, res) {
      if (questionOrder[i] == thisQ) {
       nextQ = questionOrder[i + 1]
       break
-    }  
+    }
   }
 
     res.redirect('./' + nextQ)
@@ -315,14 +340,14 @@ router.get('/marriage', function(req, res) {
       if (i==0) {
         req.app.locals.backLink = './introduction'
         break
-      } 
+      }
       else {
-      req.app.locals.backLink = './' + questionOrder[i - 1]      
+      req.app.locals.backLink = './' + questionOrder[i - 1]
       break
       }
-    }  
+    }
   }
-  res.render('marriage')    
+  res.render('marriage')
 })
 
 // marriage next question
@@ -335,7 +360,7 @@ router.post('/marriage-next-q', function (req, res) {
      if (questionOrder[i] == thisQ) {
       nextQ = questionOrder[i + 1]
       break
-    }  
+    }
   }
     res.redirect('./' + nextQ)
 
@@ -351,14 +376,14 @@ router.get('/ethnicity', function(req, res) {
       if (i==0) {
         req.app.locals.backLink = './introduction'
         break
-      } 
+      }
       else {
-      req.app.locals.backLink = './' + questionOrder[i - 1]      
+      req.app.locals.backLink = './' + questionOrder[i - 1]
       break
       }
-    }  
+    }
   }
-  res.render('ethnicity')    
+  res.render('ethnicity')
 })
 
 // ethnicity answer next question and back link
@@ -388,7 +413,7 @@ router.post('/ethnicity-next-q', function (req, res) {
      if (questionOrder[i] == thisQ) {
       nextQ = questionOrder[i + 1]
       break
-    }  
+    }
   }
     res.redirect('/' + nextQ)
   }
@@ -405,7 +430,7 @@ router.post('/ethnicity-type-next-q', function (req, res) {
      if (questionOrder[i] == thisQ) {
       nextQ = questionOrder[i + 1]
       break
-    }  
+    }
   }
     res.redirect('./' + nextQ)
 
@@ -421,14 +446,14 @@ router.get('/religion', function(req, res) {
       if (i==0) {
         req.app.locals.backLink = './introduction'
         break
-      } 
+      }
       else {
-      req.app.locals.backLink = './' + questionOrder[i - 1]      
+      req.app.locals.backLink = './' + questionOrder[i - 1]
       break
       }
-    }  
+    }
   }
-  res.render('religion')    
+  res.render('religion')
 })
 
 // religion next question
@@ -441,7 +466,7 @@ router.post('/religion-next-q', function (req, res) {
      if (questionOrder[i] == thisQ) {
       nextQ = questionOrder[i + 1]
       break
-    }  
+    }
   }
     res.redirect('./' + nextQ)
 
@@ -457,14 +482,14 @@ router.get('/disability', function(req, res) {
       if (i==0) {
         req.app.locals.backLink = './introduction'
         break
-      } 
+      }
       else {
-      req.app.locals.backLink = './' + questionOrder[i - 1]      
+      req.app.locals.backLink = './' + questionOrder[i - 1]
       break
       }
-    }  
+    }
   }
-  res.render('disability')    
+  res.render('disability')
 })
 
 
@@ -484,7 +509,7 @@ router.post('/disability-next-q', function (req, res) {
       if (questionOrder[i] == thisQ) {
         nextQ = questionOrder[i + 1]
         break
-      }  
+      }
     }
     res.redirect('./' + nextQ)
   }
@@ -508,9 +533,9 @@ router.post('/disability-yes-next-q', function (req, res) {
       if (questionOrder[i] == thisQ) {
         nextQ = questionOrder[i + 1]
         break
-      }  
+      }
   }
- 
+
     res.redirect('./' + nextQ)
   }
 
@@ -526,7 +551,7 @@ router.post('/disability-details-next-q', function (req, res) {
     if (questionOrder[i] == thisQ) {
       nextQ = questionOrder[i + 1]
       break
-    }  
+    }
   }
 
     res.redirect('./' + nextQ)
@@ -544,14 +569,14 @@ router.get('/pregnancy', function(req, res) {
       if (i==0) {
         req.app.locals.backLink = './introduction'
         break
-      } 
+      }
       else {
-      req.app.locals.backLink = './' + questionOrder[i - 1]      
+      req.app.locals.backLink = './' + questionOrder[i - 1]
       break
       }
-    }  
+    }
   }
-  res.render('pregnancy')    
+  res.render('pregnancy')
 })
 
 
@@ -565,7 +590,7 @@ router.post('/pregnancy-next-q', function (req, res) {
      if (questionOrder[i] == thisQ) {
       nextQ = questionOrder[i + 1]
       break
-    }  
+    }
   }
     res.redirect('./' + nextQ)
 
