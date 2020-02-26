@@ -13,36 +13,52 @@
     <div class="govuk-grid-column-two-thirds">
       <form action="/age-next-q" method="post" novalidate>
 
-        {{ govukRadios({
-          idPrefix: "tell-us-your-dob",
-          name: "tell-us-your-dob",
-          fieldset: {
-            legend: {
-              text: "Can we have your date of birth?",
-              isPageHeading: true,
-              classes: "govuk-fieldset__legend--l"
-            }
-          },
-          items: [
+    {{ govukDateInput({
+      id: "dob",
+      namePrefix: "dob",
+      fieldset: {
+        legend: {
+          text: "What is your date of birth?",
+          isPageHeading: true,
+          classes: "govuk-fieldset__legend--xl"
+        }
+      },
+      hint: {
+        text: "For example, 31 3 1980"
+      },
+      items: [
+        {
+          name: "day",
+          classes: "govuk-input--width-2",
+          autocomplete: "bday-day"
+        },
+        {
+          name: "month",
+          classes: "govuk-input--width-2",
+          autocomplete: "bday-month"
+        },
+        {
+          name: "year",
+          classes: "govuk-input--width-2",
+          autocomplete: "bday-year"
+        }
+      ]
+    }) }}
 
-            {
-              value: "yes",
-              text: "Yes"
-            },
-            {
-              divider: "or"
-            },
-            {
-              value: "prefer-not-to-say",
-              text: "Prefer not to say"
-            }
-          ]
-        }) }}
-        <br>
+    <p>or</p>
 
-        {{ govukButton({
-          text: "Continue"
-        }) }}
+    {{ govukRadios({
+      classes: "govuk-radios--inline",
+      idPrefix: "prefer-not-to-say",
+      name: "prefer-not-to-say",
+      items: [
+        {
+          value: "prefer-not-to-say",
+          text: "Prefer not to say"
+        }
+      ]
+    })
+    }}
 
     <br>
     {{ govukDetails({
