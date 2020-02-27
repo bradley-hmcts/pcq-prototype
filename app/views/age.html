@@ -13,58 +13,63 @@
     <div class="govuk-grid-column-two-thirds">
       <form action="/age-next-q" method="post" novalidate>
 
-    {{ govukDateInput({
-      id: "dob",
-      namePrefix: "dob",
-      fieldset: {
-        legend: {
-          text: "What is your date of birth?",
-          isPageHeading: true,
-          classes: "govuk-fieldset__legend--xl"
-        }
-      },
-      hint: {
-        text: "For example, 31 3 1980"
-      },
-      items: [
-        {
-          name: "day",
-          classes: "govuk-input--width-2",
-          autocomplete: "bday-day"
-        },
-        {
-          name: "month",
-          classes: "govuk-input--width-2",
-          autocomplete: "bday-month"
-        },
-        {
-          name: "year",
-          classes: "govuk-input--width-2",
-          autocomplete: "bday-year"
-        }
-      ]
-    }) }}
+        {{ govukDateInput({
+          id: "dob",
+          namePrefix: "dob",
+          fieldset: {
+            legend: {
+              text: "What is your date of birth?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 1980"
+          },
+          items: [
+            {
+              name: "day",
+              classes: "govuk-input--width-2",
+              autocomplete: "bday-day"
+            },
+            {
+              name: "month",
+              classes: "govuk-input--width-2",
+              autocomplete: "bday-month"
+            },
+            {
+              name: "year",
+              classes: "govuk-input--width-4",
+              autocomplete: "bday-year"
+            }
+          ]
+        }) }}
 
-    <p>or</p>
+        <p>or</p>
 
-    {{ govukRadios({
-      classes: "govuk-radios--inline",
-      idPrefix: "prefer-not-to-say",
-      name: "prefer-not-to-say",
-      items: [
-        {
-          value: "prefer-not-to-say",
-          text: "Prefer not to say"
-        }
-      ]
-    })
-    }}
+        {{ govukRadios({
+          classes: "govuk-radios--inline",
+          idPrefix: "prefer-not-to-say",
+          name: "prefer-not-to-say",
+          items: [
+            {
+              value: "prefer-not-to-say",
+              text: "Prefer not to say"
+            }
+          ]
+        })
+        }}
 
-    <br>
-    {{ govukDetails({
-          summaryText: "Why we are asking this question",
-          text: "This information helps us check that we’re treating people equally and fairly. It helps us to meet our commitment to equality (under the Equality Act 2010)."
-    }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+        <br>
+        {{ govukDetails({
+              summaryText: "Why we are asking this question",
+              text: "This information helps us check that we’re treating people equally and fairly. It helps us to meet our commitment to equality (under the Equality Act 2010)."
+        }) }}
 
       </form>
     </div>
