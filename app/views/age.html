@@ -1,75 +1,65 @@
 {% extends "layout.html" %}
-<!-- JHS 091019 included this call because doesn't work from the layout.html -->
 {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
 
 {% block pageTitle %}
-  Equality questions - Date of Birth
+  Equality questions - age
 {% endblock %}
 
+{% set inputDateOfBirth %}
+    {{ govukDateInput({
+      id: "dob",
+      namePrefix: "dob",
+      hint: {
+        text: "For example, 31 03 1980"
+        }
+    }) }}
+{% endset %}
 
 
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <form action="/age-next-q" method="post" novalidate>
+      <form action="/age-next-q" method="post" novalidate>  
 
-        {{ govukDateInput({
-          id: "dob",
-          namePrefix: "dob",
-          fieldset: {
+      {{ govukRadios({
+        idPrefix: "date-of-birth",
+        name: "date-of-birth",
+        fieldset: {
             legend: {
               text: "What is your date of birth?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
-          },
-          hint: {
-            text: "For example, 31 3 1980"
-          },
-          items: [
-            {
-              name: "day",
-              classes: "govuk-input--width-2",
-              autocomplete: "bday-day"
+        },
+        items: [
+            {              
+              checked: "checked",
+              value: "enter-your-date-of-birth",
+              text: "Enter your date of birth",
+              conditional: {
+              html: inputDateOfBirth}
             },
             {
-              name: "month",
-              classes: "govuk-input--width-2",
-              autocomplete: "bday-month"
+             divider: "or"
             },
-            {
-              name: "year",
-              classes: "govuk-input--width-4",
-              autocomplete: "bday-year"
-            }
-          ]
-        }) }}
 
-        <p>or</p>
-
-        {{ govukRadios({
-          classes: "govuk-radios--inline",
-          idPrefix: "prefer-not-to-say",
-          name: "prefer-not-to-say",
-          items: [
             {
               value: "prefer-not-to-say",
               text: "Prefer not to say"
             }
           ]
-        })
-        }}
-
-
-        {{ govukButton({
-          text: "Continue"
         }) }}
 
         <br>
-        {{ govukDetails({
-              summaryText: "Why we are asking this question",
-              text: "This information helps us check that we’re treating people equally and fairly. It helps us to meet our commitment to equality (under the Equality Act 2010)."
+
+        {{ govukButton({
+           text: "Continue"
         }) }}
+    <br>
+    {{ govukDetails({
+          summaryText: "Why we are asking this question",
+          text: "This information helps us check that we’re treating people equally and fairly. It helps us to meet our commitment to equality (under the Equality Act 2010)."
+    }) }}
 
       </form>
     </div>
