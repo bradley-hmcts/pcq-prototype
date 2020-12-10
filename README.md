@@ -1,4 +1,4 @@
-# hmcts-pcq-prototype-master #
+# pcq-prototype #
 These are the protected characteristics questions (PCQs) to be integrated into HMCTS services 
 The website is [hmcts-pcq-prototype.herokuapp.com](https://hmcts-pcq-prototype.herokuapp.com/)
 
@@ -52,4 +52,3 @@ SERVICE_USER_TYPE_B = secondary user type
 SERVICE_RETURN_URL_A = service url to return to for user type A
 
 SERVICE_RETURN_URL_B = service url to return to for user type B, leave blank or delete if no second user type
-
