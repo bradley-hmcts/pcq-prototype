@@ -73,7 +73,7 @@ var serviceUserTypeB = process.env.SERVICE_USER_TYPE_B
 
 // JHS 131019 make questionOrder global so can access it in routes
 
-questionOrder = process.env.QUESTION_ORDER || config.questionOrder
+questionOrder = process.env.QUESTION_ORDER ? Array.from(process.env.QUESTION_ORDER) : config.questionOrder
 
 useHttps = useHttps.toLowerCase()
 
