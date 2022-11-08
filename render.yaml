@@ -14,7 +14,7 @@ services:
       - key: SERVICE_RETURN_URL_A
         value: https://ucd-lip-woc-apply-prototype.herokuapp.com/v1-1/payment
       - key: QUESTION_ORDER
-        value: [language,sexual-orientation,marriage,ethnicity,religion,disability,pregnancy,exit]
+        value: ['language', 'sexual-orientation', 'marriage', 'ethnicity', 'religion', 'disability', 'pregnancy', 'exit']
 
   - name: hmcts-pcq-iac-prototype
     type: web
@@ -31,4 +31,4 @@ services:
       - key: SERVICE_USER_TYPE_A
         value: appellant
       - key: QUESTION_ORDER
-        value: [language,sex,gender,sexual-orientation,marriage,ethnicity,religion,disability,pregnancy,exit]
+        value: ['language', 'sex', 'gender', 'sexual-orientation', 'marriage', 'ethnicity', 'religion', 'disability', 'pregnancy', 'exit']
