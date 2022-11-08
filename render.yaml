@@ -4,7 +4,7 @@ services:
     env: node
     region: frankfurt
     plan: free
-    buildCommand: renderBuild
+    buildCommand: npm run renderBuild
     startCommand: node listen-on-port.js
     envVars:
       - key: USE_AUTH
@@ -21,7 +21,7 @@ services:
     env: node
     region: frankfurt
     plan: free
-    buildCommand: renderBuild
+    buildCommand: npm run renderBuild
     startCommand: node listen-on-port.js
     envVars:
       - key: USERNAME
