@@ -1,0 +1,34 @@
+services:
+  - name: hmcts-pcq-ce-prototype
+    type: web
+    env: node
+    region: frankfurt
+    plan: free
+    buildCommand: node ./node_modules/gulp/bin/gulp generate-assets
+    startCommand: node listen-on-port.js
+    envVars:
+      - key: USE_AUTH
+        value: false
+      - key: SERVICE_USER_TYPE_A
+        value: claimant
+      - key: SERVICE_RETURN_URL_A
+        value: https://ucd-lip-woc-apply-prototype.herokuapp.com/v1-1/payment
+      - key: QUESTION_ORDER
+        value: ["language","sexual-orientation","marriage","ethnicity","religion","disability","pregnancy","exit"]
+
+  - name: hmcts-pcq-iac-prototype
+    type: web
+    env: node
+    region: frankfurt
+    plan: free
+    buildCommand: node ./node_modules/gulp/bin/gulp generate-assets
+    startCommand: node listen-on-port.js
+    envVars:
+      - key: USERNAME
+        value: hmctsiacpcq
+      - key: PASSWORD
+        sync: false # https://render.com/docs/blueprint-spec#placeholder-environment-variables
+      - key: SERVICE_USER_TYPE_A
+        value: appellant
+      - key: QUESTION_ORDER
+        value: ["language","sex","gender","sexual-orientation","marriage","ethnicity","religion","disability","pregnancy","exit"]

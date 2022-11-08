@@ -10,17 +10,17 @@ module.exports = {
   // Leave exit as the last page
 
   questionOrder: [
-  'age',
-  'language',
-  'sex',
-  'gender',
-  'sexual-orientation',
-  'marriage',
-  'ethnicity',
-  'religion',
-  'disability',
-  'pregnancy',
-  'exit'],
+    'age',
+    'language',
+    'sex',
+    'gender',
+    'sexual-orientation',
+    'marriage',
+    'ethnicity',
+    'religion',
+    'disability',
+    'pregnancy',
+    'exit'],
 
   // Set values for the originating service, these are now set in env-variable.env
 
