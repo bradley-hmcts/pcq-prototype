@@ -16,6 +16,42 @@ services:
       - key: QUESTION_ORDER
         value: '["language","sexual-orientation","marriage","ethnicity","religion","disability","pregnancy","exit"]'
 
+  - name: hmcts-pcq-dss-prototype
+    type: web
+    env: node
+    region: frankfurt
+    plan: free
+    buildCommand: npm run renderBuild
+    startCommand: node listen-on-port.js
+    envVars:
+      - key: USERNAME
+        value: hmctsdsspcq
+      - key: PASSWORD
+        sync: false # https://render.com/docs/blueprint-spec#placeholder-environment-variables
+      - key: SERVICE_USER_TYPE_A
+        value: applicant
+      - key: QUESTION_ORDER
+        value: '["language","sexual-orientation","marriage","ethnicity","religion","disability","pregnancy","exit"]'
+
+  - name: hmcts-pcq-et-prototype
+    type: web
+    env: node
+    region: frankfurt
+    plan: free
+    buildCommand: npm run renderBuild
+    startCommand: node listen-on-port.js
+    envVars:
+      - key: USERNAME
+        value: hmctsetpcq
+      - key: PASSWORD
+        sync: false # https://render.com/docs/blueprint-spec#placeholder-environment-variables
+      - key: SERVICE_USER_TYPE_A
+        value: appellant
+      - key: SERVICE_RETURN_URL_A
+        value: https://c3ibml.axshare.com/#id=b58rsp&p=check_your_answers&g=1
+      - key: QUESTION_ORDER
+        value: '["language","sexual-orientation","marriage","ethnicity","religion","disability","pregnancy","exit"]'
+
   - name: hmcts-pcq-iac-prototype
     type: web
     env: node
@@ -32,3 +68,18 @@ services:
         value: appellant
       - key: QUESTION_ORDER
         value: '["language","sex","gender","sexual-orientation","marriage","ethnicity","religion","disability","pregnancy","exit"]'
+
+  - name: hmcts-pcq-st-prototype
+    type: web
+    env: node
+    region: frankfurt
+    plan: free
+    buildCommand: npm run renderBuild
+    startCommand: node listen-on-port.js
+    envVars:
+      - key: USERNAME
+        value: hmctsstpcq
+      - key: PASSWORD
+        sync: false # https://render.com/docs/blueprint-spec#placeholder-environment-variables
+      - key: QUESTION_ORDER
+        value: '["language","sexual-orientation","marriage","ethnicity","religion","disability","pregnancy","exit"]'
