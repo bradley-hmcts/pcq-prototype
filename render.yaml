@@ -4,7 +4,7 @@ services:
     env: node
     region: frankfurt
     plan: free
-    buildCommand: node ./node_modules/gulp/bin/gulp generate-assets
+    buildCommand: renderBuild
     startCommand: node listen-on-port.js
     envVars:
       - key: USE_AUTH
@@ -21,7 +21,7 @@ services:
     env: node
     region: frankfurt
     plan: free
-    buildCommand: node ./node_modules/gulp/bin/gulp generate-assets
+    buildCommand: renderBuild
     startCommand: node listen-on-port.js
     envVars:
       - key: USERNAME
