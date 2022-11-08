@@ -15,6 +15,7 @@ services:
         value: https://ucd-lip-woc-apply-prototype.herokuapp.com/v1-1/payment
       - key: QUESTION_ORDER
         value: '["language","sexual-orientation","marriage","ethnicity","religion","disability","pregnancy","exit"]'
+      - fromGroup: runtimeEnvironment
 
   - name: hmcts-pcq-dss-prototype
     type: web
@@ -32,6 +33,7 @@ services:
         value: applicant
       - key: QUESTION_ORDER
         value: '["language","sexual-orientation","marriage","ethnicity","religion","disability","pregnancy","exit"]'
+      - fromGroup: runtimeEnvironment
 
   - name: hmcts-pcq-et-prototype
     type: web
@@ -51,6 +53,7 @@ services:
         value: https://c3ibml.axshare.com/#id=b58rsp&p=check_your_answers&g=1
       - key: QUESTION_ORDER
         value: '["language","sexual-orientation","marriage","ethnicity","religion","disability","pregnancy","exit"]'
+      - fromGroup: runtimeEnvironment
 
   - name: hmcts-pcq-iac-prototype
     type: web
@@ -68,6 +71,7 @@ services:
         value: appellant
       - key: QUESTION_ORDER
         value: '["language","sex","gender","sexual-orientation","marriage","ethnicity","religion","disability","pregnancy","exit"]'
+      - fromGroup: runtimeEnvironment
 
   - name: hmcts-pcq-st-prototype
     type: web
@@ -83,6 +87,7 @@ services:
         sync: false # https://render.com/docs/blueprint-spec#placeholder-environment-variables
       - key: QUESTION_ORDER
         value: '["language","sexual-orientation","marriage","ethnicity","religion","disability","pregnancy","exit"]'
+      - fromGroup: runtimeEnvironment
 
 envVarGroups:
   - name: runtimeEnvironment
