@@ -9,7 +9,6 @@ const nunjucks = require('nunjucks')
 const sessionInCookie = require('client-sessions')
 const sessionInMemory = require('express-session')
 const cookieParser = require('cookie-parser')
-const url = require('url')
 
 // Run before other code to make sure variables from .env are available
 // JHS 091019 use a different file for dotenv, instead of .env
