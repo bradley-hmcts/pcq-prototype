@@ -100,7 +100,7 @@ services:
       - key: USE_AUTH
         value: false
       - key: QUESTION_ORDER
-        value: '["age",language","sexual-orientation","marriage","ethnicity","religion","disability","pregnancy","exit"]'
+        value: '["age","language","sexual-orientation","marriage","ethnicity","religion","disability","pregnancy","exit"]'
       - fromGroup: runtimeEnvironment
 
 envVarGroups:
