@@ -89,7 +89,7 @@ services:
         value: '["language","sexual-orientation","marriage","ethnicity","religion","disability","pregnancy","exit"]'
       - fromGroup: runtimeEnvironment
       
-   - name: hmcts-pcq-prototype
+  - name: hmcts-pcq-prototype
     type: web
     env: node
     region: frankfurt
