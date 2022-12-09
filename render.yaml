@@ -88,6 +88,20 @@ services:
       - key: QUESTION_ORDER
         value: '["language","sexual-orientation","marriage","ethnicity","religion","disability","pregnancy","exit"]'
       - fromGroup: runtimeEnvironment
+      
+   - name: hmcts-pcq-prototype
+    type: web
+    env: node
+    region: frankfurt
+    plan: free
+    buildCommand: npm run renderBuild
+    startCommand: node listen-on-port.js
+    envVars:
+      - key: USE_AUTH
+        value: false
+      - key: QUESTION_ORDER
+        value: '["age",language","sexual-orientation","marriage","ethnicity","religion","disability","pregnancy","exit"]'
+      - fromGroup: runtimeEnvironment
 
 envVarGroups:
   - name: runtimeEnvironment
